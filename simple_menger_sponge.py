@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-sponge = ['\u2588\u2588']
+sponge = [['\u2588\u2588']]
 
 for i in range(int(input())):
     new = []
