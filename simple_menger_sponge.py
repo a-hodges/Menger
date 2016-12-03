@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-sponge = [['\u2588\u2588']]
+sponge = [[True]]
 
 for i in range(int(input())):
     new = []
@@ -10,7 +10,7 @@ for i in range(int(input())):
             for y in range(3):
                 for col in r:
                     if x == 1 and y == 1:
-                        newline.append('  ')
+                        newline.append(False)
                     else:
                         newline.append(col)
             new.append(newline)
@@ -18,5 +18,8 @@ for i in range(int(input())):
         
 for r in sponge:
     for c in r:
-        print(c, end='')
+        if c:
+            print("\u2588" * 2, end='')
+        else:
+            print(" " * 2, end='')
     print()
