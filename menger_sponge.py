@@ -17,12 +17,16 @@ class Sponge (object):
         Recursively iterates sponge
         """
         if d <= 0:
-            new = not middle and block
+            new = block and middle < (self._dimension - 1)
         else:
             new = []
             for x in range(3):
+                if x == 1:
+                    m = middle + 1
+                else:
+                    m = middle
                 for line in block:
-                    new.append(self._iterate(line, d-1, middle and x == 1))
+                    new.append(self._iterate(line, d-1, m))
         return new
 
     @property
