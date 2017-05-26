@@ -1,4 +1,4 @@
-menger :: Int -> [[Bool]]
+menger :: Int -> [[Boo ]
 menger 0 = [[True]]
 menger n
     | n < 0 = error "Invalid size."
@@ -8,14 +8,12 @@ menger n
             collate r x grid prev
                 | x >= 3 = grid
                 | r >= length(prev) = collate 0 (x+1) grid prev
-                | otherwise = collate (r+1) x (grid++[collateRow 0 x 0 [] (prev!!r)]) prev
+                | otherwise = collate (r+1) x (grid++[collateRow x (prev!!r)]) prev
                     where
-                        collateRow :: Int -> Int -> Int -> [Bool] -> [Bool] -> [Bool]
-                        collateRow c x y row prev
-                            | y >= 3 = row
-                            | c >= length(prev) = collateRow 0 x (y+1) row prev
-                            | x `mod` 3 == 1 && y `mod` 3 == 1 = collateRow (c+1) x y (row++[False]) prev
-                            | otherwise = collateRow (c+1) x y (row++[prev!!c]) prev
+                        collateRow :: Int -> [Bool] -> [Bool]
+                        collateRow x prev
+                            | x `mod` 3 == 1 = prev ++ (replicate (length prev) False) ++ prev
+                            | otherwise = prev ++ prev ++ prev
 
 showMenger :: [[Bool]] -> String
 showMenger m = mengerStr "" m
@@ -32,5 +30,5 @@ showMenger m = mengerStr "" m
 
 main = do
     n <- readLn :: IO Int
-    let grid = menger n
+    let grid = menge
     putStr $ showMenger grid
