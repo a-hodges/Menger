@@ -6,16 +6,13 @@ for i in range(int(input())):
     new = []
     for x in range(3):
         for r in sponge:
-            newline = []
-            for y in range(3):
-                for col in r:
-                    if x == 1 and y == 1:
-                        newline.append(False)
-                    else:
-                        newline.append(col)
+            if x % 3 == 1:
+                newline = r + ([False] * len(r)) + r
+            else:
+                newline = r * 3
             new.append(newline)
     sponge = new
-        
+
 for r in sponge:
     for c in r:
         if c:
