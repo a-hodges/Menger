@@ -1,5 +1,3 @@
-import Data.List
-
 menger :: Int -> [[Bool]]
 menger 0 = [[True]]
 menger n
