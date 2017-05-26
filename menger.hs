@@ -1,4 +1,4 @@
-menger :: Int -> [[Boo ]
+menger :: Int -> [[Bool]]
 menger 0 = [[True]]
 menger n
     | n < 0 = error "Invalid size."
@@ -30,5 +30,5 @@ showMenger m = mengerStr "" m
 
 main = do
     n <- readLn :: IO Int
-    let grid = menge
+    let grid = menger n
     putStr $ showMenger grid
