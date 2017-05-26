@@ -16,10 +16,10 @@ menger n
                             | otherwise = prev ++ prev ++ prev
 
 showMenger :: [[Bool]] -> String
-showMenger xs = concat (map mengerLine xs)
+showMenger xs = unlines (map mengerLine xs)
     where
         mengerLine :: [Bool] -> String
-        mengerLine xs = concat (map (\x -> if x then "\x2588\x2588" else "  ") xs) ++ "\n"
+        mengerLine xs = concat (map (\x -> if x then "\x2588\x2588" else "  ") xs)
 
 main = do
     n <- readLn :: IO Int
