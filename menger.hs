@@ -1,3 +1,5 @@
+import Data.List
+
 menger :: Int -> [[Bool]]
 menger 0 = [[True]]
 menger n
@@ -16,17 +18,10 @@ menger n
                             | otherwise = prev ++ prev ++ prev
 
 showMenger :: [[Bool]] -> String
-showMenger m = mengerStr "" m
+showMenger xs = concat (map mengerLine xs)
     where
-        mengerStr :: String -> [[Bool]] -> String
-        mengerStr str [] = str
-        mengerStr str (x:xs) = mengerStr (str++(mengerLine "" x)) xs
-            where
-                mengerLine :: String -> [Bool] -> String
-                mengerLine str [] = str++"\n"
-                mengerLine str (x:xs)
-                    | x = mengerLine (str++"\x2588\x2588") xs
-                    | otherwise = mengerLine (str++"  ") xs
+        mengerLine :: [Bool] -> String
+        mengerLine xs = concat (map (\x -> if x then "\x2588\x2588" else "  ") xs) ++ "\n"
 
 main = do
     n <- readLn :: IO Int
