@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
+import bpy
+
 class Sponge (object):
-    p = "\u2588"*2 # positive space
-    n = "  "       # negative space
+    p = True  # positive space
+    n = False # negative space
 
     def __init__(self, size=0, dimension=2):
         r"""
@@ -12,7 +14,7 @@ class Sponge (object):
         self._dimension = dimension
         self.size = size
 
-    def _iterate(self, block, d, middle=True):
+    def _iterate(self, block, d, middle=0):
         r"""
         Recursively iterates sponge
         """
@@ -90,15 +92,20 @@ class Sponge (object):
         return new
 
     def __str__(self):
+        def symbol(bool):
+            return "\u2588"*2 if bool else "  "
         lines = self._sponge
         for _ in reversed(range(2, self.dimension)):
             lines = lines[len(lines) // 2]
         ret = self._get_strs(lines)
         if self.dimension >= 2:
-            ret = "\n".join(map("".join, ret))
+            ret = "\n".join(map("".join, map(symbol, ret)))
         elif self.dimension == 1:
             ret = "".join(ret)
         return ret
+
+    def __iter__(self):
+        return iter(self._sponge)
 
 if __name__ == "__main__":
     import argparse
